@@ -12,7 +12,10 @@ import com.nure3.sbc.model.News
 
 
 
-class NewsAdapter(private val newsList: List<News>) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(
+    private val newsList: List<News>,
+    private val onItemClick: (News) -> Unit
+) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.image)
@@ -30,8 +33,13 @@ class NewsAdapter(private val newsList: List<News>) : RecyclerView.Adapter<NewsA
         holder.image.setImageResource(news.imageResId)
         holder.newsTitle.text = news.title
         holder.newsDescription.text = news.description
+
+        holder.itemView.setOnClickListener {
+            onItemClick(news)
+        }
     }
 
     override fun getItemCount() = newsList.size
 }
+
 
