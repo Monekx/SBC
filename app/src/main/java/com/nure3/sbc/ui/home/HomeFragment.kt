@@ -20,7 +20,7 @@ class HomeFragment : Fragment() {
 
     // Пример данных для ленты новостей
     private val sampleNews = listOf(
-        News("s1mpleo перейшов до FaZe Clan!", "Їбать як це потужно!", R.drawable.sample_image),
+        News("s11mpleo перейшов до FaZe Clan!", "Їбать як це потужно!", R.drawable.sample_image),
         News("Команда NaVi розпалася", "Щось десь якось там ну короче пофіг..", R.drawable.sample_image),
         News("Заголовок 3", "Описание новости номер 3", R.drawable.sample_image),
         News("Заголовок 4", "Описание новости номер 4", R.drawable.sample_image),
