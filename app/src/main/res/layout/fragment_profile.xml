@@ -14,7 +14,7 @@
             android:id="@+id/avatarImageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/profile_user"
+            android:src="@drawable/avatar"
             android:scaleType="centerCrop"
             android:layout_marginBottom="16dp" />
 
@@ -22,7 +22,7 @@
             android:id="@+id/usernameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Имя пользователя"
+            android:text="User01"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
@@ -39,20 +39,20 @@
             android:id="@+id/editProfileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Редактировать профиль" />
+            android:text="Edit Profile" />
 
         <Button
             android:id="@+id/settingsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Настройки"
+            android:text="Settings"
             android:layout_marginTop="12dp" />
 
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Выйти"
+            android:text="Exit"
             android:layout_marginTop="12dp"
             android:textColor="@android:color/holo_red_dark" />
     </LinearLayout>
