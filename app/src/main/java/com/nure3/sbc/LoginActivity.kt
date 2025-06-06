@@ -1,4 +1,4 @@
-package com.nure3.sbc
+package com.nure3.sbc.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,13 +22,10 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordEdit.text.toString()
 
             if (email == "test@example.com" && password == "1234") {
-                try {// Логин успешен, запускаем MainActivity
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                } catch(e: Exception) {
-                    println(e)
-                }
-                // Закрываем LoginActivity, чтобы по назад не вернуться
+                // Логин успешен, запускаем MainActivity
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish() // Закрываем LoginActivity, чтобы по назад не вернуться
             } else {
                 // Покажи ошибку (например, Toast)
             }

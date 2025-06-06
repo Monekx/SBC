@@ -1,64 +1,49 @@
 package com.nure3.sbc.ui.home
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.nure3.sbc.databinding.FragmentHomeBinding
+import com.nure3.sbc.model.News
+import com.nure3.sbc.ui.adapter.NewsAdapter
 import com.nure3.sbc.R
+
+
 
 class HomeFragment : Fragment() {
 
-    private lateinit var importantNewsPager: ViewPager2
-    private lateinit var newsListView: ListView
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    // Пример данных для ленты новостей
+    private val sampleNews = listOf(
+        News("s1mpleo перейшов до FaZe Clan!", "Їбать як це потужно!", R.drawable.sample_image),
+        News("Команда NaVi розпалася", "Щось десь якось там ну короче пофіг..", R.drawable.sample_image),
+        News("Заголовок 3", "Описание новости номер 3", R.drawable.sample_image),
+        News("Заголовок 4", "Описание новости номер 4", R.drawable.sample_image),
+    )
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        importantNewsPager = view.findViewById(R.id.importantNewsPager)
-        newsListView = view.findViewById(R.id.newsListView)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val importantNews = listOf(
-            "Важная новость: Большое обновление!"
-        )
+        binding.recyclerNews.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerNews.adapter = NewsAdapter(sampleNews)
+    }
 
-        importantNewsPager.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-                val textView = TextView(parent.context).apply {
-                    layoutParams = ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                    )
-                    textSize = 24f
-                    setPadding(16, 16, 16, 16)
-                }
-                return object : RecyclerView.ViewHolder(textView) {}
-            }
-
-            override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-                (holder.itemView as TextView).text = importantNews[position]
-            }
-
-            override fun getItemCount() = importantNews.size
-        }
-
-        val newsItems = listOf(
-            "Новость 1: Сегодня солнечно",
-            "Новость 2: Курсы выросли",
-            "Новость 3: Концерт в парке",
-            "Новость 4: Спортсмен выиграл",
-            "Новость 5: Новый фильм вышел"
-        )
-
-        val newsAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, newsItems)
-        newsListView.adapter = newsAdapter
-
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
